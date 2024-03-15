@@ -15,8 +15,8 @@
     "datasets": {
         "centered": true,
         "train": {
-            "name": "Face",
-            "dataroot": "./toy_sample/",
+            "name": "RaFD",
+            "dataroot": "/media/eva-isr/SSD/Rafd_frontal_resized/", 
             "batch_size": 1,
             "num_workers": 8,
             "use_shuffle": true
