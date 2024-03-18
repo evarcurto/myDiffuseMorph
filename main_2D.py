@@ -80,7 +80,7 @@ if __name__ == "__main__":
                     visualizer.print_current_errors(current_epoch, istep+1, training_iters, logs, t, 'Train')
                     visualizer.plot_current_errors(current_epoch, (istep+1) / float(training_iters), logs)
                     visuals = diffusion.get_current_visuals_train()
-                    visualizer.display_current_results(visuals, current_epoch, True)
+                    visualizer.display_current_results(visuals, current_epoch, istep, False)
 
                 # validation
                 if (istep+1) % opt['train']['val_freq'] == 0:
@@ -92,7 +92,7 @@ if __name__ == "__main__":
                     diffusion.test_generation(continuous=False)
                     diffusion.test_registration(continuous=False)
                     visuals = diffusion.get_current_visuals()
-                    visualizer.display_current_results(visuals, current_epoch, True)
+                    visualizer.display_current_results(visuals, current_epoch, istep, True)
 
                     diffusion.set_new_noise_schedule(opt['model']['beta_schedule']['train'], schedule_phase='train')
 

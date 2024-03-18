@@ -34,7 +34,7 @@ class Visualizer():
 
     # |visuals|: dictionary of images to display or save\
 
-    def display_current_results(self, visuals, epoch, save_result):
+    def display_current_results(self, visuals, epoch, it, save_result):
         if self.display_id > 0:  # show images in the browser
             ncols = 0 #self.opt.display_single_pane_ncols
             if ncols > 0:
@@ -79,7 +79,7 @@ class Visualizer():
         if self.use_html and (save_result or not self.saved):  # save images to a html file
             self.saved = True
             for label, image_numpy in visuals.items():
-                img_path = os.path.join(self.img_dir, 'epoch%.3d_%s.png' % (epoch, label))
+                img_path = os.path.join(self.img_dir, 'epoch%.3d_%d_%s.png' % (epoch, it, label))
                 util.save_image(image_numpy, img_path)
             # update website
             webpage = html.HTML(self.web_dir, 'Experiment name = %s' % self.name, reflesh=1)
