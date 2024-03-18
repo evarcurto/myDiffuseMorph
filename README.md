@@ -1,4 +1,6 @@
 ## My attempt to use DiffuseMorph
+- Class RAFDDataset modified to obtain image pairs
+- Schedule error fixed
 
 
  The following README section is from the original repository.
