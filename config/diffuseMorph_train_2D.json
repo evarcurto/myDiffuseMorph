@@ -17,7 +17,7 @@
         "train": {
             "name": "RaFD",
             "dataroot": "/media/eva-isr/SSD/Rafd_frontal_resized/", 
-            "batch_size": 2,
+            "batch_size": 4,
             "num_workers": 16,
             "use_shuffle": true
         }

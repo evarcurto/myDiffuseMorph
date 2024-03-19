@@ -1,7 +1,7 @@
 ## My attempt to use DiffuseMorph
 - Class RAFDDataset modified to obtain image pairs
 - Schedule error fixed
-
+- Modifications to run with batch size > 2 (branch-> batchsize)
 
  The following README section is from the original repository.
 <img src="./img/representative.png">
