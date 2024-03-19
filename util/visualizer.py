@@ -4,7 +4,7 @@ import os
 import time
 from . import util
 from . import html
-
+import torch
 
 class Visualizer():
     def __init__(self, opt):
@@ -72,7 +72,7 @@ class Visualizer():
             else:
                 idx = 1
                 for label, image_numpy in visuals.items():
-                    self.vis.image(image_numpy.transpose([2, 0, 1]), opts=dict(title=label),
+                    self.vis.images(image_numpy.transpose([3, 2, 0, 1]), opts=dict(title=label),
                                    win=self.display_id + idx)
                     idx += 1
 
@@ -80,7 +80,9 @@ class Visualizer():
             self.saved = True
             for label, image_numpy in visuals.items():
                 img_path = os.path.join(self.img_dir, 'epoch%.3d_%d_%s.png' % (epoch, it, label))
-                util.save_image(image_numpy, img_path)
+                image_tensor = torch.from_numpy(image_numpy.transpose([3, 2, 0, 1]))
+                #util.save_image(image_numpy, img_path)
+                util.save_image_torch(image_tensor, img_path)
             # update website
             webpage = html.HTML(self.web_dir, 'Experiment name = %s' % self.name, reflesh=1)
             for n in range(epoch, 0, -1):

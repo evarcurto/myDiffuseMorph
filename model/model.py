@@ -74,7 +74,8 @@ class DDPM(BaseModel):
     def test_registration(self, continuous=False):
         self.netG.eval()
         input = torch.cat([self.data['M'], self.data['F']], dim=1)
-        nsample = self.data['nS']
+        #nsample = self.data['nS']
+        nsample = self.data['nS'][0].detach().cpu().numpy() 
         if isinstance(self.netG, nn.DataParallel):
             self.out_M, self.flow, self_contD, self.contF = self.netG.module.registration(input, nsample=nsample, continuous=continuous)
         else:
@@ -110,6 +111,18 @@ class DDPM(BaseModel):
         out_dict['out_M'] = Metrics.tensor2im(self.out_M.detach().float().cpu(), min_max=(0, 1))
         out_dict['flow'] = Metrics.tensor2im(self.flow.detach().float().cpu(), min_max=min_max)
         return out_dict
+    
+    def get_current_visuals_train_bt(self):
+        out_dict = OrderedDict()
+        if self.centered:
+            min_max = (-1, 1)
+        else:
+            min_max = (0, 1)
+        out_dict['M'] = Metrics.tensor2im_batch(self.data['M'].detach().float().cpu(), min_max=min_max)
+        out_dict['F'] = Metrics.tensor2im_batch(self.data['F'].detach().float().cpu(), min_max=min_max)
+        out_dict['out_M'] = Metrics.tensor2im_batch(self.out_M.detach().float().cpu(), min_max=(0, 1))
+        out_dict['flow'] = Metrics.tensor2im_batch(self.flow.detach().float().cpu(), min_max=min_max)
+        return out_dict
 
     def get_current_visuals(self, sample=False):
         out_dict = OrderedDict()
@@ -122,6 +135,19 @@ class DDPM(BaseModel):
         out_dict['F'] = Metrics.tensor2im(self.data['F'].detach().float().cpu(), min_max=min_max)
         out_dict['out_M'] = Metrics.tensor2im(self.out_M.detach().float().cpu(), min_max=(0, 1))
         out_dict['flow'] = Metrics.tensor2im(self.flow.detach().float().cpu(), min_max=min_max)
+        return out_dict
+    
+    def get_current_visuals_bt(self, sample=False):
+        out_dict = OrderedDict()
+        if self.centered:
+            min_max = (-1, 1)
+        else:
+            min_max = (0, 1)
+        out_dict['MF'] = Metrics.tensor2im_batch(self.MF.detach().float().cpu(), min_max=min_max)
+        out_dict['M'] = Metrics.tensor2im_batch(self.data['M'].detach().float().cpu(), min_max=min_max)
+        out_dict['F'] = Metrics.tensor2im_batch(self.data['F'].detach().float().cpu(), min_max=min_max)
+        out_dict['out_M'] = Metrics.tensor2im_batch(self.out_M.detach().float().cpu(), min_max=(0, 1))
+        out_dict['flow'] = Metrics.tensor2im_batch(self.flow.detach().float().cpu(), min_max=min_max)
         return out_dict
 
     def get_current_generation(self):

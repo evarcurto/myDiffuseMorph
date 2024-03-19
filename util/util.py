@@ -5,10 +5,15 @@ import os
 import collections
 import scipy.misc
 from PIL import Image
+import torchvision
+
 
 def save_image(image_numpy, image_path):
     image_pil = Image.fromarray(image_numpy.astype('uint8'))
     image_pil.save(image_path)
+
+def save_image_torch(image_torch, image_path):
+    torchvision.utils.save_image(image_torch, image_path, normalize = True)
 
 def info(object, spacing=10, collapse=1):
     """Print methods and doc strings.
