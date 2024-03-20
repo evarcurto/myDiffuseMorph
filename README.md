@@ -9,11 +9,20 @@ The code provided was only prepared for a pair of images (toy_sample), so I had 
 
 In addition, I also had to adapt the code to be able to use batch sizes greater than 2 and thus run tests with different batch sizes.
 
+Example of an attempt to train the model using batch size = 2 and num of workers = 16:
+![Screenshot from 2024-03-13 11-44-49](https://github.com/evarcurto/myDiffuseMorph/assets/30838057/7a372d8d-bfaf-4719-98b5-ce35e5854d33)
+![Screenshot from 2024-03-13 11-45-10](https://github.com/evarcurto/myDiffuseMorph/assets/30838057/fda45a75-af22-4fb9-ac3a-d52f0e5d2669)
+![Screenshot from 2024-03-13 11-45-31](https://github.com/evarcurto/myDiffuseMorph/assets/30838057/c524401d-7dee-4c4b-ba3d-0fc4be9794e0)
+![Screenshot from 2024-03-13 11-45-37](https://github.com/evarcurto/myDiffuseMorph/assets/30838057/59792868-29f7-4b24-85fa-27d5f6265573)
+
+
 
 Modifications:
 - Class RAFDDataset modified to obtain image pairs
 - Schedule error fixed
 - Modifications to run with batch size > 2 (branch-> batchsize)
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
  The following README section is from the original repository -> https://github.com/DiffuseMorph/
 <img src="./img/representative.png">
