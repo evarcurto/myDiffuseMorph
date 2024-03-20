@@ -22,7 +22,7 @@ Modifications:
 - Schedule error fixed
 - Modifications to run with batch size > 2 (branch-> batchsize)
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------------//
+//---------------------------------------------------------------------------------------------------------------------------------------------------------//
 
  The following README section is from the original repository -> https://github.com/DiffuseMorph/
 <img src="./img/representative.png">
