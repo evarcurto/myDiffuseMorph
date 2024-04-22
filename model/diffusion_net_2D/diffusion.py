@@ -199,7 +199,7 @@ class GaussianDiffusion(nn.Module):
         return model_mean + nonzero_mask * (0.5 * model_log_variance).exp() * noise
 
     # @torch.no_grad()
-    def p_sample_loop(self, x_in, continuous=False):
+    def p_sample_loop(self, batchSize, x_in, continuous=False):
         device = self.betas.device
 
         x = x_in
@@ -230,11 +230,11 @@ class GaussianDiffusion(nn.Module):
             return ret_img
         else:
             #return ret_img[-1:]
-            return ret_img[-4:] #it depends on the defined batch size
+            return ret_img[-batchSize:] #it depends on the defined batch size
 
     # @torch.no_grad()
-    def generation(self, x_in, continuous=False):
-        return self.p_sample_loop(x_in, continuous)
+    def generation(self, batchSize, x_in, continuous=False):
+        return self.p_sample_loop(x_in, batchSize, continuous)
 
     # @torch.no_grad()
     def registration(self, x_in, nsample=7, continuous=False):

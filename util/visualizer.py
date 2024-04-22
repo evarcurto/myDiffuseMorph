@@ -79,7 +79,7 @@ class Visualizer():
         if self.use_html and (save_result or not self.saved):  # save images to a html file
             self.saved = True
             for label, image_numpy in visuals.items():
-                img_path = os.path.join(self.img_dir, 'epoch%.3d_%d_%s.png' % (epoch, it, label))
+                img_path = os.path.join(self.img_dir, 'epoch%.3d_%s.png' % (epoch, label))
                 image_tensor = torch.from_numpy(image_numpy.transpose([3, 2, 0, 1]))
                 #util.save_image(image_numpy, img_path)
                 util.save_image_torch(image_tensor, img_path)

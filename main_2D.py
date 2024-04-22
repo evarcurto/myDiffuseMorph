@@ -90,7 +90,7 @@ if __name__ == "__main__":
                     os.makedirs(result_path, exist_ok=True)
 
                     diffusion.set_new_noise_schedule(opt['model']['beta_schedule']['val'], schedule_phase='val')
-                    diffusion.test_generation(continuous=False)
+                    diffusion.test_generation(batchSize,continuous=False)
                     diffusion.test_registration(continuous=False)
                     #visuals = diffusion.get_current_visuals()
                     visuals = diffusion.get_current_visuals_bt()

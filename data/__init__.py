@@ -30,6 +30,16 @@ def create_dataset_2D(dataset_opt, phase):
                                                            dataset_opt['name']))
     return dataset
 
+def create_dataset_2D_MyDataset(dataset_opt, phase):
+    '''create dataset'''
+    from data.MY_dataset import MYDataset as D
+    dataset = D(dataroot=dataset_opt['dataroot'],
+                split=phase
+                )
+    logger = logging.getLogger('base')
+    logger.info('Dataset [{:s} - {:s}] is created.'.format(dataset.__class__.__name__,
+                                                           dataset_opt['name']))
+    return dataset
 
 def create_dataset_3D(dataset_opt, phase):
     '''create dataset'''

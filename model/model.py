@@ -62,13 +62,13 @@ class DDPM(BaseModel):
         self.log_dict['l_smt'] = l_smt.item()
         self.log_dict['l_tot'] = l_tot.item()
 
-    def test_generation(self, continuous=False):
+    def test_generation(self, batchSize, continuous=False):
         self.netG.eval()
         input = torch.cat([self.data['M'], self.data['F']], dim=1)
         if isinstance(self.netG, nn.DataParallel):
-            self.MF = self.netG.module.generation(input, continuous)
+            self.MF = self.netG.module.generation(input, batchSize, continuous)
         else:
-            self.MF= self.netG.generation(input, continuous)
+            self.MF= self.netG.generation(input, batchSize, continuous)
         self.netG.train()
 
     def test_registration(self, continuous=False):

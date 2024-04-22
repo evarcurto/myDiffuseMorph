@@ -16,8 +16,8 @@
         "centered": true,
         "train": {
             "name": "RaFD",
-            "dataroot": "/media/eva-isr/SSD/Rafd_frontal_resized/", 
-            "batch_size": 4,
+            "dataroot": "/media/eva-isr/SSD/Rafd_frontal_resized_sample/", 
+            "batch_size": 1,
             "num_workers": 16,
             "use_shuffle": true
         }
@@ -66,12 +66,12 @@
             "encoder_nc": [64,128,256,512,1024],
             "decoder_nc": [1024,512,256,128,64,2]
         },
-        "loss_lambda": 2
+        "loss_lambda": 1
     },
     "train": {
         "n_epoch": 40,
-        "val_freq": 1000,
-        "save_checkpoint_epoch": 1,
+        "val_freq": 100,
+        "save_checkpoint_epoch": 40,
         "print_freq": 1,
         "optimizer": {
             "type": "adam",
